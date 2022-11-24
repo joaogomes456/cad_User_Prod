@@ -1,0 +1,30 @@
+.login{
+  margin-top: 2.5rem;
+  border:#808080 outset 0.1rem;
+  border-radius: 1rem;
+ }
+
+.titulo{
+  font-weight: bold;
+  color: #000000;
+}
+
+.buts{
+  position: relative;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  text-align: center;
+}
+
+ .esqSenha{
+  position: relative;
+  margin-left: 15%;
+  margin-right: 15%;
+  text-align: center;
+ }
+
+ .alerta{
+  ion-input{
+    color: #000000;
+  }
+ }

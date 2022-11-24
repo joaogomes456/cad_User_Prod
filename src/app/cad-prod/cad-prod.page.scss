@@ -1,0 +1,35 @@
+.titulo{
+  font-weight: bold;
+  border:#808080 outset 0.1rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.2rem;
+  font-size: large;
+  padding: 0.8rem;
+  .ion-text-center{
+    font-size:20pt;
+  }
+}
+
+.buts{
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  margin-left: 3.5rem;
+  margin-right: 3.5rem;
+}
+
+.alerta{
+  color: #000000;
+ }
+
+.cad{
+  border:#808080 outset 0.1rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  padding: 1rem;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+}

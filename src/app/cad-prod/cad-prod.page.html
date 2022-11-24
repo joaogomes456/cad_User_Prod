@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons mode="ios" slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="titulo"><ion-title class="ion-text-center">Cadastrar Produto</ion-title></div>
+
+  <div class="cad">
+
+    <form [formGroup]="formProd">
+
+  <ion-item>
+    <ion-label position="floating">Nome:</ion-label>
+    <ion-input formControlName="nome"></ion-input>
+    <ng-container *ngFor="let erro of mensagens.nome">
+      <span class="msg-erro" *ngIf="formProd.get('nome')?.hasError(erro.tipo) && (formProd.get('nome')?.dirty || formProd.get('nome')?.touched)">
+        {{erro.mensagem}}
+      </span>
+    </ng-container>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Descrição:</ion-label>
+    <ion-input formControlName="descricao"></ion-input>
+    <ng-container *ngFor="let erro of mensagens.descricao">
+      <span class="msg-erro" *ngIf="formProd.get('descricao')?.hasError(erro.tipo) && (formProd.get('descricao')?.dirty || formProd.get('descricao')?.touched)">
+        {{erro.mensagem}}
+      </span>
+    </ng-container>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Validade:</ion-label>
+    <ion-input formControlName="validade"></ion-input>
+    <ng-container *ngFor="let erro of mensagens.validade">
+      <span class="msg-erro" *ngIf="formProd.get('validade')?.hasError(erro.tipo) && (formProd.get('validade')?.dirty || formProd.get('validade')?.touched)">
+        {{erro.mensagem}}
+      </span>
+    </ng-container>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Preço:</ion-label>
+    <ion-input formControlName="preco"></ion-input>
+    <ng-container *ngFor="let erro of mensagens.preco">
+      <span class="msg-erro" *ngIf="formProd.get('preco')?.hasError(erro.tipo) && (formProd.get('preco')?.dirty || formProd.get('preco')?.touched)">
+        {{erro.mensagem}}
+      </span>
+    </ng-container>
+  </ion-item>
+
+  <ion-button class="buts" (click)="salvarProduto()" expand="block" color="success">SALVAR</ion-button>
+
+</form>
+
+</div>
+
+</ion-content>
