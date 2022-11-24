@@ -1,0 +1,7 @@
+{
+  "name": "cad_User_Prod",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
