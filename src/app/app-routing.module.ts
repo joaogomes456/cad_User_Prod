@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'cadProd',
     loadChildren: () => import('./cad-prod/cad-prod.module').then( m => m.CadProdPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   }
 ];
 @NgModule({

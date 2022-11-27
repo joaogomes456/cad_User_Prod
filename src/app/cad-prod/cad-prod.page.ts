@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms'
+import { Router } from '@angular/router';
+import { Produto } from '../models/produto';
+import { ProdutoService } from '../services/produto/produto.service';
 
 @Component({
   selector: 'app-cad-prod',
@@ -10,6 +13,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms'
 export class CadProdPage implements OnInit {
 
   formProd: FormGroup;
+
+  produto: Produto = new Produto();
 
   mensagens = {
     nome: [
@@ -27,7 +32,7 @@ export class CadProdPage implements OnInit {
     ]
   };
 
-  constructor(private formBuilder: FormBuilder ,private alertController: AlertController) {
+  constructor(private formBuilder: FormBuilder ,private alertController: AlertController, private produtoService: ProdutoService, private route: Router) {
     this.formProd = this.formBuilder.group({
       nome: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       descricao: ['', Validators.compose([Validators.required, Validators.minLength(10)])],
@@ -61,8 +66,14 @@ export class CadProdPage implements OnInit {
   ngOnInit() {
   }
 
-  salvarProduto(){
+  async salvarProduto(){
     if(this.formProd.valid){
+      this.produto.nome = this.formProd.value.nome;
+      this.produto.descricao = this.formProd.value.descricao;
+      this.produto.validade = this.formProd.value.validade;
+      this.produto.preco = this.formProd.value.preco;
+      await this.produtoService.set(this.produto.nome, this.produto);
+      this.route.navigateByUrl('/tabs');
       this.alertSave();
     }
     else{

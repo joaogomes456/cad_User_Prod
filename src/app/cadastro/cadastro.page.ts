@@ -1,8 +1,11 @@
+import { Usuario } from './../models/usuario';
 import { CpfValidator } from './../validators/cpf-validator';
 import { comparaValidator } from './../validators/compara-validator';
 import { AlertController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms'
+import { Router } from '@angular/router';
+import { UsuarioService } from '../services/usuario/usuario.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -12,6 +15,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms'
 export class CadastroPage implements OnInit {
 
   formUser: FormGroup;
+
+  usuario: Usuario = new Usuario();
 
   mensagens = {
     nome: [
@@ -37,7 +42,7 @@ export class CadastroPage implements OnInit {
     ],
   };
 
-  constructor(private formBuilder: FormBuilder ,private alertController: AlertController) {
+  constructor(private formBuilder: FormBuilder ,private alertController: AlertController, private usuarioService: UsuarioService, private route: Router) {
     this.formUser = this.formBuilder.group({
       nome: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       cpf: ['', Validators.compose([Validators.required, CpfValidator.validate])],
@@ -53,7 +58,7 @@ export class CadastroPage implements OnInit {
     const alert = await this.alertController.create({
       mode:'ios',
       cssClass:'alerta',
-      message: 'Cadastro realizado. Agora volte para a tela de Login',
+      message: 'Cadastro realizado',
       buttons: ['OK'],
     });
 
@@ -74,8 +79,14 @@ export class CadastroPage implements OnInit {
   ngOnInit() {
   }
 
-  salvarUsuario(){
+  async salvarUsuario(){
     if(this.formUser.valid){
+      this.usuario.nome = this.formUser.value.nome;
+      this.usuario.cpf = this.formUser.value.cpf;
+      this.usuario.email = this.formUser.value.email;
+      this.usuario.senha = this.formUser.value.senha;
+      await this.usuarioService.set(this.usuario.email, this.usuario);
+      this.route.navigateByUrl('/login');
       this.alertSave();
     }
     else{

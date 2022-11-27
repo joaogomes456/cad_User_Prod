@@ -4,9 +4,9 @@ import { Storage } from '@ionic/storage-angular';
 @Injectable({
   providedIn: 'root'
 })
-export class ProdutosService {
+export class UsuarioService {
 
-  private produtos: Storage | null = null;
+  private usuario: Storage | null = null;
 
   constructor(private storage: Storage) {
     this.init();
@@ -15,26 +15,26 @@ export class ProdutosService {
   async init() {
     // If using, define drivers here: await this.storage.defineDriver(/*...*/);
     const storage = await this.storage.create();
-    this.produtos = storage;
+    this.usuario = storage;
   }
 
   // Create and expose methods that users of this service can
   // call, for example:
   public set(key: string, value: any) {
-    this.produtos?.set(key, value);
+    this.usuario?.set(key, value);
   }
 
   public get(key: string) {
-    this.produtos?.get(key);
+    this.usuario?.get(key);
   }
 
   public remove(key: string) {
-    this.produtos?.remove(key);
+    this.usuario?.remove(key);
   }
 
   public getAll() {
     const lista: any[] = [];
-    this.produtos?.forEach((value, key, index) => {
+    this.usuario?.forEach((value, key, index) => {
       lista.push(value);
     });
     return lista;

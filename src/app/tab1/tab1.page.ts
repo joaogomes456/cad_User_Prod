@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Produto } from '../models/produto';
+import { ProdutoService } from '../services/produto/produto.service';
+
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +10,21 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  listaProdutos: Produto [] = [];
+
+  constructor(private produtoService: ProdutoService) {}
+
+  async buscarProdutos(){
+    this.listaProdutos = await this.produtoService.getAll();
+  }
+
+  ionViewDidEnter(){
+    this.buscarProdutos();
+  }
+
+  async excluirProduto(nome: string){
+    await this.produtoService.remove(nome);
+    this.buscarProdutos();
+  }
 
 }
